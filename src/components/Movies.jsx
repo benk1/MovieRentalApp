@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { getMovies } from '../services/fakeMovieService';
 import Like from './common/Like';
+import Pagination from './common/Pagination';
+import { paginate } from '../utils/Paginate';
 class Movies extends Component {
   state = {
     movies: getMovies(),
+    pageSize: 4,
+    currentPage: 1,
   };
 
   handleDelete = (movie) => {
@@ -23,8 +27,15 @@ class Movies extends Component {
       movies,
     });
   };
+
+  handlePageChange = (page) => {
+    this.setState({
+      currentPage: page,
+    });
+    //console.log(page);
+  };
   render() {
-    const { movies } = this.state;
+    const { movies, pageSize, currentPage } = this.state;
     let message = movies.length ? (
       <div className='center '>
         <h5 className='red-text lighten-2'>
@@ -36,6 +47,8 @@ class Movies extends Component {
         <h1 className='red-text'>There are no Movies in the data base</h1>
       </div>
     );
+
+    const moviesPaginated = paginate(movies, currentPage, pageSize);
     return (
       <>
         {message}
@@ -49,7 +62,7 @@ class Movies extends Component {
             </tr>
           </thead>
           <tbody>
-            {movies.map((movie) => {
+            {moviesPaginated.map((movie) => {
               return (
                 <tr key={movie._id}>
                   <td>{movie.title}</td>
@@ -75,6 +88,12 @@ class Movies extends Component {
             })}
           </tbody>
         </table>
+        <Pagination
+          itemsCount={movies.length}
+          pageSize={pageSize}
+          currentPage={currentPage}
+          onPageChange={this.handlePageChange}
+        />
       </>
     );
   }
