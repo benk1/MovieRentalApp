@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
   console.log(currentPage);
@@ -23,11 +24,20 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
       ))}
       <li className='waves-effect'>
         <a href='#!'>
-          <i onClick={() => onPageChange()} className='material-icons'>chevron_right</i>
+          <i onClick={() => onPageChange()} className='material-icons'>
+            chevron_right
+          </i>
         </a>
       </li>
     </ul>
   );
+};
+
+Pagination.propTypes = {
+  itemsCount: PropTypes.number.isRequired,
+  pageSize: PropTypes.number.isRequired,
+  onPageChange: PropTypes.func.isRequired,
+  currentPage: PropTypes.number.isRequired,
 };
 
 export default Pagination;
