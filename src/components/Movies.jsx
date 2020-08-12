@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { getMovies } from '../services/fakeMovieService';
-import Like from './common/Like';
+
 import Pagination from './common/Pagination';
 import { paginate } from '../utils/Paginate';
 import ListGroup from './common/ListGroup';
 import { getGenres } from '../services/fakeGenreService';
+import MovieTable from './MovieTable';
 class Movies extends Component {
   state = {
     movies: [],
@@ -14,9 +15,10 @@ class Movies extends Component {
   };
 
   componentDidMount() {
+    const genres = [{ _id: '', name: 'All Genres' }, ...getGenres()];
     this.setState({
       movies: getMovies(),
-      genres: getGenres(),
+      genres: genres,
     });
   }
 
@@ -46,14 +48,31 @@ class Movies extends Component {
   };
 
   handleGenreSelect = (genre) => {
-    console.log(genre);
+    this.setState({
+      selectedGenre: genre,
+      currentPage: 1,
+    });
+  };
+
+  handleSort = (path) => {
+    console.log(path);
   };
   render() {
-    const { movies, pageSize, currentPage, genres } = this.state;
-    let message = movies.length ? (
+    const {
+      movies: moviesPaginated,
+      pageSize,
+      currentPage,
+      selectedGenre,
+      genres,
+    } = this.state;
+    const filtered =
+      selectedGenre && selectedGenre._id
+        ? moviesPaginated.filter((m) => m.genre._id === selectedGenre._id)
+        : moviesPaginated;
+    let message = moviesPaginated.length ? (
       <div className='center '>
         <h5 className='red-text lighten-2'>
-          We Have {movies.length} Movies in Our data Base
+          We Have {filtered.length} Movies in Our data Base
         </h5>
       </div>
     ) : (
@@ -62,57 +81,26 @@ class Movies extends Component {
       </div>
     );
 
-    const moviesPaginated = paginate(movies, currentPage, pageSize);
+    const movies = paginate(filtered, currentPage, pageSize);
     return (
       <div className='row'>
         <div className='col s6 m2 l3 '>
           <ListGroup
             items={genres}
-            textProperty='name'
-            valueProperty='_id'
+            selectedItem={this.state.selectedGenre}
             onItemSelect={this.handleGenreSelect}
           />
         </div>
         <div className='col s12 m3 l9'>
           {message}
-          <table className='responsive-table'>
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Genre</th>
-                <th>Stock</th>
-                <th>Rate</th>
-              </tr>
-            </thead>
-            <tbody>
-              {moviesPaginated.map((movie) => {
-                return (
-                  <tr key={movie._id}>
-                    <td>{movie.title}</td>
-                    <td>{movie.genre.name}</td>
-                    <td>{movie.numberInStock}</td>
-                    <td>{movie.dailyRentalRate}</td>
-                    <td>
-                      <Like
-                        liked={movie.liked}
-                        onClick={() => this.handleLike(movie)}
-                      />
-                    </td>
-                    <td>
-                      <button
-                        onClick={() => this.handleDelete(movie)}
-                        className=' btn  red right'
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <MovieTable
+            movies={movies}
+            onLike={this.handleLike}
+            onDelete={this.handleDelete}
+            onSort={this.handleSort}
+          />
           <Pagination
-            itemsCount={movies.length}
+            itemsCount={filtered.length}
             pageSize={pageSize}
             currentPage={currentPage}
             onPageChange={this.handlePageChange}
