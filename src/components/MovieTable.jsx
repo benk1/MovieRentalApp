@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Like from './common/Like';
-import TableHeader from './common/TableHeader';
-import TableBody from './common/TableBody';
+//import TableHeader from './common/TableHeader';
+//import TableBody from './common/TableBody';
 import Table from './common/Table';
 class MovieTable extends Component {
   columns = [
