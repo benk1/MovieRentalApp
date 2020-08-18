@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
@@ -10,24 +11,26 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
   const pages = _.range(1, pagesCount + 1);
   return (
     <ul className='pagination paginateStyle'>
-      <li className='disabled'>
-        <i className='material-icons'>chevron_left</i>
+      <li className='waves-effect'>
+        <Link to='/'>
+          <i className='material-icons'>chevron_left</i>
+        </Link>
       </li>
       {pages.map((page) => (
-        <>
-          <li key={page} className={page === currentPage ? 'active' : 'null'}>
-            <a href='#!' onClick={() => onPageChange(page)}>
+        <li key={page} className={page === currentPage ? 'active' : 'null'}>
+          <>
+            <Link to='/' onClick={() => onPageChange(page)}>
               {page}
-            </a>
-          </li>
-        </>
+            </Link>
+          </>
+        </li>
       ))}
       <li className='waves-effect'>
-        <a href='#!'>
+        <Link to='/'>
           <i onClick={() => onPageChange()} className='material-icons'>
             chevron_right
           </i>
-        </a>
+        </Link>
       </li>
     </ul>
   );

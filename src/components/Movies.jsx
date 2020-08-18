@@ -7,6 +7,7 @@ import ListGroup from './common/ListGroup';
 import { getGenres } from '../services/fakeGenreService';
 import MovieTable from './MovieTable';
 import _ from 'lodash';
+import NavBar from './NavBar';
 class Movies extends Component {
   state = {
     movies: [],
@@ -91,14 +92,16 @@ class Movies extends Component {
     const movies = paginate(sorted, currentPage, pageSize);
     return (
       <div className='row'>
-        <div className='col s6 m2 l3 '>
+        <div className='col s6 pull-s6   '>
+          <span className='flow-text'></span>
           <ListGroup
             items={genres}
             selectedItem={this.state.selectedGenre}
             onItemSelect={this.handleGenreSelect}
           />
         </div>
-        <div className='col s12 m3 l9'>
+        <div className='col s10 push-s2 '>
+          <span className='flow-text'></span>
           {message}
           <MovieTable
             movies={movies}
