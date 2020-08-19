@@ -77,13 +77,15 @@ class Movies extends Component {
         : moviesPaginated;
     let message = moviesPaginated.length ? (
       <div className='center '>
-        <h5 className='red-text lighten-2'>
+        <h5 className='red-text text-lighten-1'>
           We Have {filtered.length} Movies in Our data Base
         </h5>
       </div>
     ) : (
       <div>
-        <h1 className='red-text'>There are no Movies in the data base</h1>
+        <h1 className='red-text text-lighten-3'>
+          There are no Movies in the data base
+        </h1>
       </div>
     );
 
@@ -91,32 +93,36 @@ class Movies extends Component {
 
     const movies = paginate(sorted, currentPage, pageSize);
     return (
-      <div className='row'>
-        <div className='col s6 pull-s6   '>
-          <span className='flow-text'></span>
-          <ListGroup
-            items={genres}
-            selectedItem={this.state.selectedGenre}
-            onItemSelect={this.handleGenreSelect}
-          />
+      <div className='container'>
+        {message}
+        <div className='row'>
+          <div className='col s5 pull-l1 list-group  '>
+            <span className='flow-text '>
+              <ListGroup
+                items={genres}
+                selectedItem={this.state.selectedGenre}
+                onItemSelect={this.handleGenreSelect}
+              />
+            </span>
+          </div>
+          <div className='col s6  push-l1  '>
+            <span className='flow-text'>
+              <MovieTable
+                movies={movies}
+                sortColumn={sortColumn}
+                onLike={this.handleLike}
+                onDelete={this.handleDelete}
+                onSort={this.handleSort}
+              />
+            </span>
+          </div>
         </div>
-        <div className='col s10 push-s2 '>
-          <span className='flow-text'></span>
-          {message}
-          <MovieTable
-            movies={movies}
-            sortColumn={sortColumn}
-            onLike={this.handleLike}
-            onDelete={this.handleDelete}
-            onSort={this.handleSort}
-          />
-          <Pagination
-            itemsCount={filtered.length}
-            pageSize={pageSize}
-            currentPage={currentPage}
-            onPageChange={this.handlePageChange}
-          />
-        </div>
+            <Pagination
+              itemsCount={filtered.length}
+              pageSize={pageSize}
+              currentPage={currentPage}
+              onPageChange={this.handlePageChange}
+            />
       </div>
     );
   }

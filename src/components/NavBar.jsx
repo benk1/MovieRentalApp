@@ -1,21 +1,21 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 const NavBar = () => {
   return (
     <nav>
-      <div class='nav-wrapper'>
-        <a href='#' class='brand-logo right'>
+      <div className='nav-wrapper grey darken-5   '>
+        <NavLink to='/' className='brand-logo '>
           Movie Rental
-        </a>
-        <ul id='nav-mobile' class='left hide-on-med-and-down'>
+        </NavLink>
+        <ul id='nav-mobile' className='left hide-on-med-and-down right '>
           <li>
-            <a href='sass.html'>Movies</a>
+            <NavLink to='/'>Movies</NavLink>
           </li>
           <li>
-            <a href='badges.html'>Customers</a>
+            <NavLink to='/'>Customers</NavLink>
           </li>
           <li>
-            <a href='collapsible.html'>Rental</a>
+            <NavLink to='/'>Rental</NavLink>
           </li>
         </ul>
       </div>
