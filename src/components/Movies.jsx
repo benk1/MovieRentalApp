@@ -93,36 +93,32 @@ class Movies extends Component {
 
     const movies = paginate(sorted, currentPage, pageSize);
     return (
-      <div className='container'>
+      <div>
         {message}
         <div className='row'>
-          <div className='col s5 pull-l1 list-group  '>
-            <span className='flow-text '>
-              <ListGroup
-                items={genres}
-                selectedItem={this.state.selectedGenre}
-                onItemSelect={this.handleGenreSelect}
-              />
-            </span>
+          <div className='col s4 m3  pull-s2    '>
+            <ListGroup
+              items={genres}
+              selectedItem={this.state.selectedGenre}
+              onItemSelect={this.handleGenreSelect}
+            />
           </div>
-          <div className='col s6  push-l1  '>
-            <span className='flow-text'>
-              <MovieTable
-                movies={movies}
-                sortColumn={sortColumn}
-                onLike={this.handleLike}
-                onDelete={this.handleDelete}
-                onSort={this.handleSort}
-              />
-            </span>
+          <div className='col s8  m9 push-s10 '>
+            <MovieTable
+              movies={movies}
+              sortColumn={sortColumn}
+              onLike={this.handleLike}
+              onDelete={this.handleDelete}
+              onSort={this.handleSort}
+            />
           </div>
         </div>
-            <Pagination
-              itemsCount={filtered.length}
-              pageSize={pageSize}
-              currentPage={currentPage}
-              onPageChange={this.handlePageChange}
-            />
+        <Pagination
+          itemsCount={filtered.length}
+          pageSize={pageSize}
+          currentPage={currentPage}
+          onPageChange={this.handlePageChange}
+        />
       </div>
     );
   }
