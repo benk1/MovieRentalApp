@@ -27,9 +27,7 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
       ))}
       <li className='waves-effect'>
         <Link to='/'>
-          <i onClick={() => onPageChange()} className='material-icons'>
-            chevron_right
-          </i>
+          <i className='material-icons'>chevron_right</i>
         </Link>
       </li>
     </ul>
