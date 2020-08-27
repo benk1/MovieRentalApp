@@ -1,19 +1,12 @@
 import React from 'react';
-const Input = ({ value, name, label, error, onChange }) => {
+const Input = ({ name, label, error, ...rest }) => {
   return (
     <div className='row'>
       <div className='input-field col s12'>
-        <input
-          value={value}
-          name={name}
-          onChange={onChange}
-          id={name}
-          type='text'
-          className='validate'
-        />
         <label htmlFor={name}>{label}</label>
-        {error && <div>{error}</div>}
+        <input {...rest} name={name} id={name} className='validate' />
       </div>
+      {error && <div className='red-text lighten-2'>{error}</div>}
     </div>
   );
 };
