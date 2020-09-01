@@ -7,6 +7,7 @@ import ListGroup from './common/ListGroup';
 import { getGenres } from '../services/fakeGenreService';
 import MovieTable from './MovieTable';
 import _ from 'lodash';
+import { Link } from 'react-router-dom';
 import NavBar from './NavBar';
 class Movies extends Component {
   state = {
@@ -77,13 +78,13 @@ class Movies extends Component {
         : moviesPaginated;
     let message = moviesPaginated.length ? (
       <div className='center '>
-        <h5 className='red-text text-lighten-1'>
-          We Have {filtered.length} Movies in Our data Base
+        <h5 className='black-text left-align text-darken-5'>
+          We have {filtered.length} movies in our database.
         </h5>
       </div>
     ) : (
       <div>
-        <h1 className='red-text text-lighten-3'>
+        <h1 className='black-text text-darken-5'>
           There are no Movies in the data base
         </h1>
       </div>
@@ -94,9 +95,15 @@ class Movies extends Component {
     const movies = paginate(sorted, currentPage, pageSize);
     return (
       <div>
-        {message}
-        <div className='row'>
-          <div className='col s4 m3  pull-s2    '>
+        <div className='row wrapper '>
+          <div className='col s4 m3  pull-s2  list-group  '>
+            <Link
+              to='/movies/new'
+              className=' btn-large #26a69a darken-1 '
+              style={{ marginBottom: 28 }}
+            >
+              Add New Movie
+            </Link>
             <ListGroup
               items={genres}
               selectedItem={this.state.selectedGenre}
@@ -104,6 +111,7 @@ class Movies extends Component {
             />
           </div>
           <div className='col s8  m9 push-s10 '>
+            {message}
             <MovieTable
               movies={movies}
               sortColumn={sortColumn}

@@ -19,3 +19,7 @@ code {
 .material-icons {
   transform: scale(1.5);
 }
+.wrapper {
+  /*display: flex;*/
+  padding: 20px;
+}
