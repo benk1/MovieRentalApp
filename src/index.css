@@ -23,3 +23,6 @@ code {
   /*display: flex;*/
   padding: 20px;
 }
+.input{
+  border: black;
+}

@@ -49,7 +49,7 @@ class MovieForm extends Form {
       title: movie.title,
       genreId: movie.genre._id,
       numberInStock: movie.numberInStock,
-      dailyRentalRate: movie.dailyRentalRate
+      dailyRentalRate: movie.dailyRentalRate,
     };
   }
   doSubmit = () => {
