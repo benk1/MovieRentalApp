@@ -10,6 +10,7 @@ const morgan = require('morgan');
 
 const logger = require('./middleware/logger');
 const genres = require('./routes/genres');
+const customers = require('./routes/customers');
 const home = require('./routes/home');
 const authenticate = require('./authenticate');
 const mongoose = require('mongoose');
@@ -47,6 +48,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(helmet());
 app.use('/api/genres', genres);
+app.use('/api/customers', customers);
 app.use('/', home);
 //app.use(logger);
 //app.use(authenticate);
