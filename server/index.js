@@ -1,54 +1,48 @@
+const Joi = require('joi');
+Joi.objectId = require('joi-objectid')(Joi);
+const mongoose = require('mongoose');
 const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
-dotenv.config({ path: './config/config.env' });
 const debug = require('debug')('app:startup');
 const dbDebugger = require('debug')('app:db');
 const config = require('config');
-const helmet = require('helmet');
+//const helmet = require('helmet');
 const morgan = require('morgan');
-
 const logger = require('./middleware/logger');
 const genres = require('./routes/genres');
 const customers = require('./routes/customers');
+const movies = require('./routes/movies');
+const rentals = require('./routes/rentals');
 const home = require('./routes/home');
 const authenticate = require('./authenticate');
-const mongoose = require('mongoose');
 
-connectDB();
-
-//Load config
+//dotenv.config({ path: './config/config.env' });
 const app = express();
-
-//connect to mongodb
+//Load config
 /*const dbURI =
-  'mongodb+srv://ben-rwiza_10:4mathias@node-movie-rental.4b9wh.mongodb.net/movieRental?retryWrites=true&w=majority';*/
-
-/*mongoose
-  .connect(process.env.MONGODB_URI || dbURI, {
+  'mongodb+srv://ben-rwiza_10:4mathias@node-movie-rental.4b9wh.mongodb.net/movieRental?retryWrites=true&w=majority;'*/
+mongoose
+  .connect('mongodb://localhost:27017/movieRental', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then((result) => {
-    const port = process.env.PORT || 3000;
-    app.listen(port, () =>
-      console.log(`Connected to MongoDB and Listening on port ${port}...`)
-    );
-  })
-  .catch((err) => console.log(err));*/
-
+  .then((result) => console.log('Mongodb connected...'))
+  .catch((err) => console.log(err));
+//connectDB();
 //app.set('view engine', 'pug');
 //app.set('views', './views');
 
 //console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
 //console.log(`app: ${app.get('env')}`);
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
-app.use(helmet());
+//app.use(helmet());
 app.use('/api/genres', genres);
 app.use('/api/customers', customers);
+app.use('/api/movies', movies);
+app.use('/api/rentals', rentals);
 app.use('/', home);
 //app.use(logger);
 //app.use(authenticate);
@@ -62,9 +56,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
   debug('Morgan enabled...');
 }
-
 //Db work
 //dbDebugger('Connected to the db');
-
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}...`));

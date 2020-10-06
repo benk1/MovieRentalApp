@@ -1,4 +1,4 @@
-const { Genre, validate } = require('../models/genres');
+const { Genre, validate } = require('../models/genre');
 //const Joi = require('joi');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;

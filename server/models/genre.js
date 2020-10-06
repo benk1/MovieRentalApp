@@ -6,6 +6,7 @@ const genreSchema = new Schema(
     name: {
       type: String,
       required: true,
+      trim: true,
       minlength: 5,
       maxlength: 50,
     },
@@ -21,5 +22,6 @@ function validateGenre(genre) {
   };
   return Joi.validate(genre, schema);
 }
-
-(exports.Genre = Genre), (exports.validate = validateGenre);
+exports.genreSchema = genreSchema;
+exports.Genre = Genre;
+exports.validate = validateGenre;
