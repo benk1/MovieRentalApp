@@ -14,11 +14,18 @@ const genres = require('./routes/genres');
 const customers = require('./routes/customers');
 const movies = require('./routes/movies');
 const rentals = require('./routes/rentals');
+const auth = require('./routes/auth');
+const users = require('./routes/users');
 const home = require('./routes/home');
 const authenticate = require('./authenticate');
 
 //dotenv.config({ path: './config/config.env' });
 const app = express();
+
+if (!config.get('jwtPrivateKey')) {
+  console.error('FATAL ERROR: jwtPrivateKey is not defined.');
+  process.exit(1);
+}
 //Load config
 /*const dbURI =
   'mongodb+srv://ben-rwiza_10:4mathias@node-movie-rental.4b9wh.mongodb.net/movieRental?retryWrites=true&w=majority;'*/
@@ -43,6 +50,8 @@ app.use('/api/genres', genres);
 app.use('/api/customers', customers);
 app.use('/api/movies', movies);
 app.use('/api/rentals', rentals);
+app.use('/api/auth', auth);
+app.use('/api/users', users);
 app.use('/', home);
 //app.use(logger);
 //app.use(authenticate);

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
-  console.log(currentPage);
+  console.log('page number', currentPage);
   const pagesCount = Math.ceil(itemsCount / pageSize);
 
   if (pagesCount === 1) return null;
@@ -17,16 +17,17 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
         </Link>
       </li>
       {pages.map((page) => (
-        <li key={page} className={page === currentPage ? 'active' : 'null'}>
+        <li key={page} className={page === currentPage ? 'active' : null}>
           <>
-            <Link to='/' onClick={() => onPageChange(page)}>
+            <Link to='#' onClick={() => onPageChange(page)}>
               {page}
             </Link>
           </>
         </li>
       ))}
+
       <li className='waves-effect'>
-        <Link to='/'>
+        <Link to='#'>
           <i className='material-icons'>chevron_right</i>
         </Link>
       </li>

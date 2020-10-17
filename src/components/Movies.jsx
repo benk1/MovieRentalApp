@@ -7,7 +7,6 @@ import { getGenres } from '../services/fakeGenreService';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar';
 import Search from './SearchBox';
-
 import _ from 'lodash';
 import { paginate } from '../utils/Paginate';
 
@@ -120,7 +119,7 @@ class Movies extends Component {
               onItemSelect={this.handleGenreSelect}
             />
           </div>
-          <div className='col s8  m9 push-s10'>
+          <div className='col s8  m9 push-s10 movie'>
             <Search
               value={this.state.searchQuery}
               onChange={this.handleSearch}

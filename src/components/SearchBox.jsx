@@ -1,17 +1,17 @@
 import React from 'react';
-const SearchBox = ({onChange, value }) => {
+const SearchBox = ({ onChange, value }) => {
   return (
-    <div class='row'>
-      <div class='input-field col s12'>
+    <div className='row'>
+      <div className='input-field col s12'>
         <input
           id='email'
           type='text'
           name='query'
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          class='validate'
+          className='validate'
         />
-        <label for='email'>Search...</label>
+        <label htmlFor='email'>Search...</label>
       </div>
     </div>
   );

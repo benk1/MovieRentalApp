@@ -1,5 +1,4 @@
 {
-  "mail": {
-    "password": "app_password"
-  }
+  "jwt": "movieRental_jwtPrivateKey",
+  "name": "My Express Movie Rental App"
 }
