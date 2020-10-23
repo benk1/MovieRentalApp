@@ -1,4 +1,4 @@
 {
-  "jwt": "movieRental_jwtPrivateKey",
+  "jwtPrivateKey": "movieRental_jwtPrivateKey",
   "name": "My Express Movie Rental App"
 }

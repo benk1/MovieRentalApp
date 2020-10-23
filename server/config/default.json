@@ -1,4 +1,9 @@
+
 {
-  "jwt": "",
-  "name": "My Express Movie Rental App"
+  "jwtPrivateKey": "unsecureKey",
+  "db": "mongodb://localhost/movieRental",
+  "port": "3900",
+  "name": "My Express Movie Rental App",
+  "requiresAuth": false
 }
+
