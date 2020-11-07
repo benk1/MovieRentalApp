@@ -12,7 +12,7 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
   return (
     <ul className='pagination paginateStyle'>
       <li className='waves-effect'>
-        <Link to='/'>
+        <Link to='#'>
           <i className='material-icons'>chevron_left</i>
         </Link>
       </li>
@@ -28,7 +28,9 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
 
       <li className='waves-effect'>
         <Link to='#'>
-          <i className='material-icons'>chevron_right</i>
+          <i onClick={() => onPageChange()} className='material-icons'>
+            chevron_right
+          </i>
         </Link>
       </li>
     </ul>

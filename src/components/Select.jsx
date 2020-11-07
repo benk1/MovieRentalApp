@@ -3,7 +3,7 @@ const Select = ({ name, label, options, error, ...rest }) => {
   return (
     <div className='row'>
       <div className='input-field col s12 '>
-        <select name={name} id={name} {...rest} className='validate'>
+        <select name={name} id={name} {...rest} className='browser-default'>
           <option value='' disabled selected />
           {options.map((option) => (
             <option key={option._id} value={option._id}>
