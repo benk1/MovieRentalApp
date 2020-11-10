@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-const NavBar = () => {
+const NavBar = ({user}) => {
   return (
     <nav>
-      <div className='nav-wrapper grey darken-5   '>
+      <div className='nav-wrapper grey darken-5    '>
         <Link to='/' className='brand-logo '>
           Movie Rental
         </Link>
@@ -17,12 +17,27 @@ const NavBar = () => {
           <li>
             <NavLink to='/rentals'>Rental</NavLink>
           </li>
+          { !user && (
+          <>
           <li>
             <NavLink to='/login'>Login</NavLink>
           </li>
           <li>
             <NavLink to='/register'>Register</NavLink>
           </li>
+          </>
+          )}
+          { user && 
+          <>
+          <li>
+            <NavLink to='/profile'>{user.name}</NavLink>
+            
+          </li>
+          <li>
+            <NavLink to='/logout'>Logout</NavLink>
+          </li>
+          </>
+          }
         </ul>
       </div>
     </nav>
