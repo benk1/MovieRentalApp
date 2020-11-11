@@ -3,6 +3,8 @@ import Joi from 'joi-browser';
 //import Input from './common/Input';
 import Form from './common/Form';
 import auth from '../services/authService'
+import {Redirect} from 'react-router-dom'
+
 class LoginForm extends Form {
   state = {
     data: { username: '', password: '' },
@@ -20,7 +22,9 @@ class LoginForm extends Form {
     
     const{data} = this.state
      await auth.login(data.username,data.password)
-    window.location = '/'
+
+     const {state} = this.props.location
+    window.location = state ? state.from.pathname : '/'
   } catch (ex) {
     if(ex.response && ex.response.status === 400){
       const errors = {...this.state.errors} // clone the errors object from the state
@@ -31,6 +35,7 @@ class LoginForm extends Form {
   }
   };
   render() {
+    if(auth.getCurrentUser()) return <Redirect to='/' />
     return (
       <div className='row'>
         <h1>Login</h1>

@@ -4,6 +4,6 @@
   "db": "mongodb://localhost/movieRental",
   "port": "3900",
   "name": "My Express Movie Rental App",
-  "requiresAuth": false
+  "requiresAuth": true
 }
 

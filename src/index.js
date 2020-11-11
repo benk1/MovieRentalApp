@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+//console.log('checking', process.env.REACT_APP_NAME);
 ReactDOM.render(
   <BrowserRouter>
     <React.StrictMode>

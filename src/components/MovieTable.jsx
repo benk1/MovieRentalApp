@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import auth from '../services/authService'
 import { Link } from 'react-router-dom';
 import Like from './common/Like';
 //import TableHeader from './common/TableHeader';
@@ -21,19 +22,28 @@ class MovieTable extends Component {
       content: (movie) => (
         <Like liked={movie.liked} onClick={() => this.props.onLike(movie)} />
       ),
-    },
-    {
-      key: 'delete',
-      content: (movie) => (
-        <button
-          onClick={() => this.props.onDelete(movie)}
-          className=' btn  red right'
-        >
-          Delete
-        </button>
-      ),
-    },
+    }
+    
   ];
+
+  deleteColumn = {
+    key: 'delete',
+    content: (movie) => (
+      <button
+        onClick={() => this.props.onDelete(movie)}
+        className=' btn  red right'
+      >
+        Delete
+      </button>
+    ),
+  }
+
+  constructor(){
+    super()
+    const user = auth.getCurrentUser()
+    if(user && user.isAdmin)
+    this.columns.push(this.deleteColumn)
+  }
 
   render() {
     const { movies, onSort, sortColumn } = this.props;

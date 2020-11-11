@@ -106,6 +106,7 @@ class Movies extends Component {
   render() {
     const { length: count } = this.state.movies;
     const { pageSize, currentPage, sortColumn } = this.state;
+    const {user} = this.props
 
     if (count === 0)
       return (
@@ -120,13 +121,14 @@ class Movies extends Component {
       <div>
         <div className='row wrapper'>
           <div className='col s4 m3  pull-s2  list-group'>
+            {user && 
             <Link
               to='/movies/new'
               className=' btn-large #26a69a darken-1 '
               style={{ marginBottom: 28 }}
             >
               Add New Movie
-            </Link>
+            </Link>}
             <ListGroup
               items={this.state.genres}
               selectedItem={this.state.selectedGenre}
