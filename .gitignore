@@ -2,6 +2,7 @@
 .DS_Store
 node_modules/
 coverage/
+server/
 logfile.log
 # dependencies
 /node_modules
