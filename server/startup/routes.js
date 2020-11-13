@@ -1,5 +1,6 @@
 const express = require('express');
 const genres = require('../routes/genres');
+
 const customers = require('../routes/customers');
 const movies = require('../routes/movies');
 const rentals = require('../routes/rentals');
@@ -14,7 +15,7 @@ const bodyParser = require('body-parser');
 module.exports = function (app) {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
-  app.use(express.static('public'));
+  app.use(express.static(__dirname + ' /public'));
   //app.use(helmet());
   app.use('/api/genres', genres);
   app.use('/api/customers', customers);

@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import MoviesTable from './MovieTable';
 import {toast} from 'react-toastify'
 import ListGroup from './common/ListGroup';
+
 import Pagination from './common/Pagination';
 import { getMovies,deleteMovie } from '../services/movieService';
 import { getGenres } from '../services/genresService';
 import { Link } from 'react-router-dom';
-import NavBar from './NavBar';
+//import NavBar from './NavBar';
 import Search from './SearchBox';
 import _ from 'lodash';
 import { paginate } from '../utils/Paginate';
@@ -46,18 +47,17 @@ class Movies extends Component {
 
   };
 
-  handleLike = (movie) => {
+  handleLike = movie => {
     const movies = [...this.state.movies];
     const index = movies.indexOf(movie);
     movies[index] = { ...movies[index] };
     movies[index].liked = !movies[index].liked;
     this.setState({ movies });
   };
-
+  
   handlePageChange = (page) => {
     this.setState({ currentPage: page });
   };
-
   handleGenreSelect = (genre) => {
     this.setState({
       selectedGenre: genre,
@@ -108,7 +108,7 @@ class Movies extends Component {
     const { pageSize, currentPage, sortColumn } = this.state;
     const {user} = this.props
 
-    if (count === 0)
+  if (count === 0)
       return (
         <p className='black-text text-darken-5'>
           There are no movies in the database.
@@ -160,7 +160,7 @@ class Movies extends Component {
         </div>
       </div>
     );
-  }
+  };
 }
 
 export default Movies;
