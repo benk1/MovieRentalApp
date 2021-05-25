@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import auth from '../services/authService'
 import { Link } from 'react-router-dom';
 import Like from './common/Like';
+import Edit from './common/EditIcon'
 //import TableHeader from './common/TableHeader';
 //import TableBody from './common/TableBody';
 import Table from './common/Table';
@@ -22,9 +23,13 @@ class MovieTable extends Component {
       content: (movie) => (
         <Like liked={movie.liked} onClick={() => this.props.onLike(movie)} />
       ),
-    }
+    },
+   
+    
     
   ];
+
+ 
 
   deleteColumn = {
     key: 'delete',
@@ -42,6 +47,7 @@ class MovieTable extends Component {
     super()
     const user = auth.getCurrentUser()
     if(user && user.isAdmin)
+    //this.columns.push(this.editColumn)
     this.columns.push(this.deleteColumn)
   }
 

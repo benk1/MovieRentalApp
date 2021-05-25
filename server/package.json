@@ -13,7 +13,7 @@
   "proxy": "http://localhost:3900",
   "engines": {
     "node": "14.8.0",
-    "npm": "6.14.7"
+    "npm": "7.10.0"
   },
   "author": "ben k",
   "license": "ISC",

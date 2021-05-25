@@ -1,14 +1,14 @@
 import http from './httpService';
 //import { apiUrl } from '../config.json';
-
-const apiEndpoint = '/movies';
+const apiEndpoint = 'http://localhost:3900/api/movies';
+// const apiEndpoint = '/movies';
 
 function movieUrl(id) {
   return `${apiEndpoint}/${id}`;
 }
 
 export function getMovies() {
-  return http.get(apiEndpoint);
+  return http.get(apiEndpoint); //axios.get('http://localhost:3900/api/movies') = apiEndpoint
 }
 
 export function getMovie(movieId) {

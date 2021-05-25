@@ -39,9 +39,12 @@ class MovieForm extends Form {
   async populateMovie() {
     try {
       const movieId = this.props.match.params.id;
+      console.log('id',movieId)
       if (movieId === "new") return;
-
-      const { data: movie } = await getMovie(movieId);
+      
+      //const movie = getMovie(movieId);
+      const { data:movie } = await getMovie(movieId);
+      console.log('MOVIE',movie)
       this.setState({ data: this.mapToViewModel(movie) });
     } catch (ex) {
       if (ex.response && ex.response.status === 404)

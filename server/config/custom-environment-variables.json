@@ -1,5 +1,5 @@
 {
-  "jwtPrivateKey": "movieRental_jwtPrivateKey",
+   "jwtPrivateKey": "movieRental_jwtPrivateKey",
   "db":" movieRental_db",
   "name": "My Express Movie Rental App"
 }

@@ -3,7 +3,9 @@ import { Link, NavLink } from 'react-router-dom';
 const NavBar = ({user}) => {
   return (
     <nav>
-      <div className='nav-wrapper grey darken-5    '>
+      <div className='nav-wrapper grey darken-3    '>
+        <div className="container">
+
         <Link to='/' className='brand-logo '>
           Movie Rental
         </Link>
@@ -27,18 +29,21 @@ const NavBar = ({user}) => {
           </li>
           </>
           )}
+          <li>
+            <NavLink to='/logout'>Logout</NavLink>
+          </li>
           { user && 
           <>
           <li>
-            <NavLink to='/profile'>{user.name}</NavLink>
+            <NavLink 
+            to='/profile' 
+            className="btn btn-floating pink lighten-3">{user.name[0]}</NavLink>
             
-          </li>
-          <li>
-            <NavLink to='/logout'>Logout</NavLink>
           </li>
           </>
           }
         </ul>
+        </div>
       </div>
     </nav>
   );

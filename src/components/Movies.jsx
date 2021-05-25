@@ -27,6 +27,7 @@ class Movies extends Component {
     const {data} = await getGenres()
     const genres = [{ _id: '', name: 'All Genres' }, ...data];
     
+    
     const {data: movies} = await getMovies()
     this.setState({ movies, genres });
   }
@@ -54,6 +55,8 @@ class Movies extends Component {
     movies[index].liked = !movies[index].liked;
     this.setState({ movies });
   };
+
+  
   
   handlePageChange = (page) => {
     this.setState({ currentPage: page });
@@ -119,7 +122,7 @@ class Movies extends Component {
 
     return (
       <div>
-        <div className='row wrapper'>
+        <div className='row wrapper grey lighten-5'>
           <div className='col s4 m3  pull-s2  list-group'>
             {user && 
             <Link
@@ -147,6 +150,7 @@ class Movies extends Component {
               movies={movies}
               sortColumn={sortColumn}
               onLike={this.handleLike}
+              
               onDelete={this.handleDelete}
               onSort={this.handleSort}
             />

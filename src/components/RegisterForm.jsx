@@ -6,7 +6,7 @@ import auth from '../services/authService'
 import { divide } from 'lodash';
 class RegisterForm extends Form {
   state = {
-    data: { username: '', password: '', name: '' },
+    data: { username: '', password: '',name: ''},
     errors: {},
   };
 
@@ -14,6 +14,7 @@ class RegisterForm extends Form {
     username: Joi.string().required().email().label('Username'),
     password: Joi.string().required().min(5).label('Password'),
     name: Joi.string().required().label('Name'),
+    
   };
 
   doSubmit = async() => {
@@ -40,7 +41,8 @@ class RegisterForm extends Form {
         <form onSubmit={this.handleSubmit} className='col s12'>
           {this.renderInput('username', 'Username')}
           {this.renderInput('password', 'Password', 'password')}
-          {this.renderInput('name', 'Name')}
+          {this.renderInput('firstname', 'FirstName')}
+          {this.renderInput('lastname', 'LastName')}
           {this.renderButton('Register')}
         </form>
       </div>

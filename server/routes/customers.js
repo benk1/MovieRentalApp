@@ -1,7 +1,7 @@
 const { Customer, validate } = require('../models/customer');
-//const Joi = require('joi');
-//const mongoose = require('mongoose');
-//const Schema = mongoose.Schema;
+const Joi = require('joi');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const express = require('express');
 const router = express.Router();
 
@@ -11,15 +11,13 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const { error } = validate(req.body);
   //if invalid,return 400 - bad req
-  if (error)
-    //400 bad req
-    return res.status(400).send(error.details[0].message);
+  const { error } = validate(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
 
   let customer = new Customer({
     name: req.body.name,
-    name: req.body.phone,
+    phone: req.body.phone,
     name: req.body.isGold,
   });
   customer = await customer.save();
@@ -27,17 +25,14 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-  const { error } = validate(req.body);
   //if invalid,return 400 - bad req
-  if (error) {
-    //400 bad req
-    res.status(400).send(error.details[0].message);
-    return;
-  }
+  const { error } = validate(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+
   const customer = await Customer.findByIdAndUpdate(
     req.params.id,
     { name: req.body.name },
-    { name: req.body.phone },
+    { phone: req.body.phone },
     { name: req.body.isGold },
     { new: true }
   );
