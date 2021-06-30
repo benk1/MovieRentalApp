@@ -18,10 +18,11 @@ class RegisterForm extends Form {
   };
 
   doSubmit = async() => {
-    console.log('Submitted');
+    // console.log('Submitted');
     try {
       
       const response = await userService.register(this.state.data)
+      console.log('Res',response);
       auth.loginWithJwt(response.headers['x-auth-token'])
       window.location = '/'
     } catch (ex) {
@@ -41,8 +42,8 @@ class RegisterForm extends Form {
         <form onSubmit={this.handleSubmit} className='col s12'>
           {this.renderInput('username', 'Username')}
           {this.renderInput('password', 'Password', 'password')}
-          {this.renderInput('firstname', 'FirstName')}
-          {this.renderInput('lastname', 'LastName')}
+          {this.renderInput('name', 'Name')}
+          {/* {this.renderInput('lastname', 'LastName')} */}
           {this.renderButton('Register')}
         </form>
       </div>

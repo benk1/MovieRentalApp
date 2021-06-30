@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
+const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage,onNext,onPrevious }) => {
   console.log('page number', currentPage);
   const pagesCount = Math.ceil(itemsCount / pageSize);
 
@@ -11,9 +11,9 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
   const pages = _.range(1, pagesCount + 1);
   return (
     <ul className='pagination paginateStyle'>
-      <li className='waves-effect'>
+      <li className={currentPage === 1? "disabled": 'waves-effect'}>
         <Link to='#'>
-          <i className='material-icons'>chevron_left</i>
+          <i onClick={onPrevious} className='material-icons'>chevron_left</i>
         </Link>
       </li>
       {pages.map((page) => (
@@ -22,17 +22,21 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
             <Link to='#' onClick={() => onPageChange(page)}>
               {page}
             </Link>
+            
+            
           </>
         </li>
       ))}
 
       <li className='waves-effect'>
         
-          <i onClick={() => onPageChange()} className='material-icons'>
+          <i onClick={onNext} className='material-icons'>
             chevron_right
+            
           </i>
         
       </li>
+            
     </ul>
   );
 };

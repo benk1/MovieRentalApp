@@ -78,10 +78,10 @@ class MovieForm extends Form {
       <div>
         <h1>Movie Form</h1>
         <form onSubmit={this.handleSubmit} className='col s12'>
-          {this.renderInput('title', 'Title')}
-          {this.renderSelect('genreId', 'Genre', this.state.genres)}
-          {this.renderInput('numberInStock', 'Number In Stock', 'number')}
-          {this.renderInput('dailyRentalRate', 'Rate')}
+          {this.renderInput('title', '')}
+          {this.renderSelect('genreId', '', this.state.genres)}
+          {this.renderInput('numberInStock', '', 'number')}
+          {this.renderInput('dailyRentalRate', '')}
 
           {this.renderButton('Save')}
         </form>

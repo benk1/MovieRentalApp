@@ -81,6 +81,17 @@ class Movies extends Component {
     this.setState({ sortColumn });
   };
 
+  handleNext =()=>{
+    this.setState({
+      currentPage: this.state.currentPage + 1
+    })
+  }
+  handlePrevious =() =>{
+    this.setState({
+      currentPage: this.state.currentPage -1
+    })
+  }
+
   getPagedData = () => {
     const {
       pageSize,
@@ -159,6 +170,8 @@ class Movies extends Component {
               pageSize={pageSize}
               currentPage={currentPage}
               onPageChange={this.handlePageChange}
+              onNext={this.handleNext}
+              onPrevious={this.handlePrevious}
             />
           </div>
         </div>
