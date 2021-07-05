@@ -1,5 +1,6 @@
 const express = require('express');
 const genres = require('../routes/genres');
+// const app = express()
 
 const customers = require('../routes/customers');
 const movies = require('../routes/movies');
@@ -9,7 +10,7 @@ const auth = require('../routes/auth');
 const error = require('../middleware/error');
 const returns = require('../routes/returns');
 const home = require('../routes/home');
-// const cors = require('cors');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 
 module.exports = function (app) {
@@ -30,7 +31,7 @@ module.exports = function (app) {
   app.use(bodyParser.json());
   //app.use(logger);
   //app.use(authenticate);
-  // app.use(cors());
+   app.use(cors());
 };
 
 if (process.env.NODE_ENV === 'development') {
