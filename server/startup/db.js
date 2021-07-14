@@ -15,7 +15,8 @@ const winston = require('winston');
 const mongoose = require('mongoose');
 const config = require('config');
 const dbUri =
-  ' mongodb://ben-rwiza_10:4mathias@node-movie-rental-shard-00-00.4b9wh.mongodb.net:27017,node-movie-rental-shard-00-01.4b9wh.mongodb.net:27017,node-movie-rental-shard-00-02.4b9wh.mongodb.net:27017/movieRental?ssl=true&replicaSet=atlas-zp5x9i-shard-0&authSource=admin&retryWrites=true&w=majority';
+  'mongodb+srv://ben-rwiza_10:4mathias@node-movie-rental.4b9wh.mongodb.net/movieRental?retryWrites=true&w=majority';
+//' mongodb://ben-rwiza_10:4mathias@node-movie-rental-shard-00-00.4b9wh.mongodb.net:27017,node-movie-rental-shard-00-01.4b9wh.mongodb.net:27017,node-movie-rental-shard-00-02.4b9wh.mongodb.net:27017/movieRental?ssl=true&replicaSet=atlas-zp5x9i-shard-0&authSource=admin&retryWrites=true&w=majority';
 module.exports = async function () {
   const db = config.get('db');
 
